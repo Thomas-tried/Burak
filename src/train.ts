@@ -17,3 +17,13 @@
 
 // Masalani yechimi:
 
+function getSquareNumbers(
+  array: number[],
+): { number: number; square: number }[] {
+  return array.map((raqam) => ({
+    number: raqam,
+    square: raqam ** 2,
+  }));
+}
+
+console.log(getSquareNumbers([1, 4, 6, 5, 0]));
