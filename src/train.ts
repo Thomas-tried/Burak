@@ -17,13 +17,31 @@
 
 // Masalani yechimi:
 
-function getSquareNumbers(
-  array: number[],
-): { number: number; square: number }[] {
-  return array.map((raqam) => ({
-    number: raqam,
-    square: raqam ** 2,
-  }));
+// function getSquareNumbers(
+//   array: number[],
+// ): { number: number; square: number }[] {
+//   return array.map((raqam) => ({
+//     number: raqam,
+//     square: raqam ** 2,
+//   }));
+// }
+
+// console.log(getSquareNumbers([1, 4, 6, 5, 0]));
+
+// TASK N
+// Stringni palindrom ekanligini aniqlab true yoki false qaytarsin.
+// Masalan: palindromCheck("dad") return true
+
+// Masalani yechimi:
+
+function palindromCheck(string: string) {
+  string = string.toLowerCase();
+  if (string == string.split("").reverse().join("")) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
-console.log(getSquareNumbers([1, 4, 6, 5, 0]));
+let result = palindromCheck("kiyiK");
+console.log(result);
