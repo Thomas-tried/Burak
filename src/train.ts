@@ -1,3 +1,13 @@
+/* Project Standards:
+ | - Logging standards
+ | - Naming standards:
+ |   function, method, variable => CAMEL
+ |   class => PASCAL
+ |   folder => KEBAB
+ |   css => SNAKE
+ | - Error handling
+*/
+
 // TASK L
 // So'zlarni ketma-ketligini buzmasdan har bir so'zni alohida teskarisiga o'girib beradigan function tuzing.
 // Masalan: reverseSentence("we like coding!") return "ew ekil !gnidoc"
@@ -34,14 +44,34 @@
 
 // Masalani yechimi:
 
-function palindromCheck(string: string) {
-  string = string.toLowerCase();
-  if (string == string.split("").reverse().join("")) {
-    return true;
-  } else {
-    return false;
+// function palindromCheck(string: string) {
+//   string = string.toLowerCase();
+//   if (string == string.split("").reverse().join("")) {
+//     return true;
+//   } else {
+//     return false;
+//   }
+// }
+
+// let result = palindromCheck("kiyiK");
+// console.log(result);
+
+// TASK O
+// Array ichidagi har xil qiymatlardan faqat sonlar yig'indisini hisoblab qaytarsin.
+// Masalan: calculateSumOfNumbers([10, "10", {son: 10}, true, 35]) return 45
+
+// Masalani yechimi:
+
+function calculateSumOfNumbers(array: any[]) {
+  let sum = 0;
+
+  for (let i = 0; i < array.length; i++) {
+    if (typeof array[i] === "number") {
+      sum = sum + array[i];
+    }
   }
+  return sum;
 }
 
-let result = palindromCheck("kiyiK");
+let result = calculateSumOfNumbers([10, "10", { son: 10 }, true, 35]);
 console.log(result);
