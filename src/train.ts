@@ -8,6 +8,9 @@
  | - Error handling
 */
 
+/** Traditional FD => SSR => EJS */
+/** Modern FD => SPA => React */
+
 /** traditional API */
 /** Rest API */
 /** GrapgQL API */
