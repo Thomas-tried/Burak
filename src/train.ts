@@ -69,16 +69,40 @@
 
 // Masalani yechimi:
 
-function calculateSumOfNumbers(array: any[]) {
-  let sum = 0;
+// function calculateSumOfNumbers(array: any[]) {
+//   let sum = 0;
 
-  for (let i = 0; i < array.length; i++) {
-    if (typeof array[i] === "number") {
-      sum = sum + array[i];
-    }
-  }
-  return sum;
+//   for (let i = 0; i < array.length; i++) {
+//     if (typeof array[i] === "number") {
+//       sum = sum + array[i];
+//     }
+//   }
+//   return sum;
+// }
+
+// let result = calculateSumOfNumbers([10, "10", { son: 10 }, true, 35]);
+// console.log(result);
+
+// TASK P
+// Objectni nested array sifatida convert qilib qaytarsin.
+// Masalan: objectToArray({a: 10, b: 20}) return [["a", 10], ["b", 20]]
+
+// Masalani yechimi:
+// function objectToArray(obj: Record<string, any>): [string, any][] {
+//   return Object.entries(obj);
+// }
+
+// console.log(objectToArray({ a: 10, b: 20 }));
+
+// TASK Q
+// Objectda berilgan string propertysi borligini tekshirsin.
+// Masalan: hasProperty({name: "BMW"}, "name") return true
+
+// Masalani yechimi:
+
+function hasProperty(obj: Record<string, any>, propertyName: string): boolean {
+  return propertyName in obj;
 }
 
-let result = calculateSumOfNumbers([10, "10", { son: 10 }, true, 35]);
-console.log(result);
+console.log(hasProperty({ name: "BMW" }, "name"));
+console.log(hasProperty({ name: "BMW" }, "color"));
