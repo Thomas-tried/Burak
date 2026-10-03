@@ -100,9 +100,39 @@
 
 // Masalani yechimi:
 
-function hasProperty(obj: Record<string, any>, propertyName: string): boolean {
-  return propertyName in obj;
+// function hasProperty(obj: Record<string, any>, propertyName: string): boolean {
+//   return propertyName in obj;
+// }
+
+// console.log(hasProperty({ name: "BMW" }, "name"));
+// console.log(hasProperty({ name: "BMW" }, "color"));
+
+// TASK R
+// "1 + 2" ko'rinishidagi stringni hisoblab number qaytarsin.
+// Masalan: calculate("1 + 3") return 4
+
+// Masalani yechimi:
+
+function calculate(string: string) {
+  let threeParts = string.split(" ");
+
+  let a = Number(threeParts[0]);
+  let operator = threeParts[1];
+  let b = Number(threeParts[2]);
+
+  if (operator === "+") {
+    return a + b;
+  }
+  if (operator === "-") {
+    return a - b;
+  }
+  if (operator === "*") {
+    return a * b;
+  }
+  if (operator === "/") {
+    return a / b;
+  }
 }
 
-console.log(hasProperty({ name: "BMW" }, "name"));
-console.log(hasProperty({ name: "BMW" }, "color"));
+let result = calculate("5 + 5");
+console.log(result);
