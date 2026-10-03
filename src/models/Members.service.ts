@@ -102,3 +102,6 @@ class MemberService {
 }
 
 export default MemberService;
+function findOne(arg0: { memberType: MemberType }) {
+  throw new Error("Function not implemented.");
+}
