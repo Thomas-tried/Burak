@@ -116,9 +116,9 @@
 function calculate(string: string) {
   let threeParts = string.split(" ");
 
-  let a = Number(threeParts[0]);
+  let a = +threeParts[0];
   let operator = threeParts[1];
-  let b = Number(threeParts[2]);
+  let b = +threeParts[2];
 
   if (operator === "+") {
     return a + b;
