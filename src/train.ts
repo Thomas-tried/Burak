@@ -113,26 +113,42 @@
 
 // Masalani yechimi:
 
-function calculate(string: string) {
-  let threeParts = string.split(" ");
+// function calculate(string: string) {
+//   let threeParts = string.split(" ");
 
-  let a = +threeParts[0];
-  let operator = threeParts[1];
-  let b = +threeParts[2];
+//   let a = +threeParts[0];
+//   let operator = threeParts[1];
+//   let b = +threeParts[2];
 
-  if (operator === "+") {
-    return a + b;
-  }
-  if (operator === "-") {
-    return a - b;
-  }
-  if (operator === "*") {
-    return a * b;
-  }
-  if (operator === "/") {
-    return a / b;
-  }
+//   if (operator === "+") {
+//     return a + b;
+//   }
+//   if (operator === "-") {
+//     return a - b;
+//   }
+//   if (operator === "*") {
+//     return a * b;
+//   }
+//   if (operator === "/") {
+//     return a / b;
+//   }
+// }
+
+// let result = calculate("5 + 5");
+// console.log(result);
+
+// TASK S
+// Array ichidagi tushib qolgan sonni topib qaytarsin.
+// Masalan: missingNumber([3, 0, 1]) return 2
+
+// Masalani yechimi:
+
+function missingNumber(arr: number[]): number {
+  const n = arr.length;
+  const expectedSum = (n * (n + 1)) / 2;
+  const actualSum = arr.reduce((sum, num) => sum + num, 0);
+  return expectedSum - actualSum;
 }
 
-let result = calculate("5 + 5");
-console.log(result);
+let result = missingNumber([3, 0, 1]);
+console.log(result); // 2
