@@ -143,12 +143,29 @@
 
 // Masalani yechimi:
 
-function missingNumber(arr: number[]): number {
-  const n = arr.length;
-  const expectedSum = (n * (n + 1)) / 2;
-  const actualSum = arr.reduce((sum, num) => sum + num, 0);
-  return expectedSum - actualSum;
+// function missingNumber(arr: number[]): number {
+//   const n = arr.length;
+//   const expectedSum = (n * (n + 1)) / 2;
+//   const actualSum = arr.reduce((sum, num) => sum + num, 0);
+//   return expectedSum - actualSum;
+// }
+
+// let result = missingNumber([3, 0, 1]);
+// console.log(result); // 2
+
+// TASK T
+// Ikkita arrayni qabul qilib, ularni birlashtirib tartiblangan holda qaytarsin.
+// Masalan: mergeSortedArrays([0, 3, 4], [4, 6]) return [0, 3, 4, 4, 6]
+
+// Masalani yechimi:
+
+function mergeSortedArrays(array1: number[], array2: number[]) {
+  let newArray = [...array1, ...array2];
+  // const newArray = array1.concat(array2);
+
+  newArray.sort((a, b) => a - b);
+  return newArray;
 }
 
-let result = missingNumber([3, 0, 1]);
-console.log(result); // 2
+let result = mergeSortedArrays([0, 31, 400], [4, 2]);
+console.log(result);
