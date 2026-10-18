@@ -1,7 +1,9 @@
-body {
-  background-color: rgb(185, 30, 149);
-}
+@import url("/css/preloader.css");
 
-* {
-  font-size: large;
+html,
+body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
 }

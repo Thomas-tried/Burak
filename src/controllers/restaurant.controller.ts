@@ -28,7 +28,7 @@ restaurantController.getSignup = (req: Request, res: Response) => {
     console.log("getSignup");
     res.render("signup");
   } catch (err) {
-    console.log("ERROR, goHgetSignupome:", err);
+    console.log("ERROR, getSignup:", err);
     res.redirect("/admin");
   }
 };
