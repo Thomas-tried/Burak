@@ -159,13 +159,32 @@
 
 // Masalani yechimi:
 
-function mergeSortedArrays(array1: number[], array2: number[]) {
-  let newArray = [...array1, ...array2];
-  // const newArray = array1.concat(array2);
+// function mergeSortedArrays(array1: number[], array2: number[]) {
+//   let newArray = [...array1, ...array2];
+//   // const newArray = array1.concat(array2);
 
-  newArray.sort((a, b) => a - b);
-  return newArray;
+//   newArray.sort((a, b) => a - b);
+//   return newArray;
+// }
+
+// let result = mergeSortedArrays([0, 31, 400], [4, 2]);
+// console.log(result);
+
+// TASK V
+// Stringdagi har bir harf necha marta takrorlanganini object sifatida qaytarsin.
+// Masalan: countChars("hello") return {h: 1, e: 1, l: 2, o: 1}
+
+// Masalani yechimi:
+
+function countChars(word: string): Record<string, number> {
+  const obj: Record<string, number> = {};
+  const letters = word.toLowerCase().split("");
+
+  for (const everySingleLetter of letters) {
+    obj[everySingleLetter] = (obj[everySingleLetter] || 0) + 1;
+  }
+
+  return obj;
 }
-
-let result = mergeSortedArrays([0, 31, 400], [4, 2]);
+const result = countChars("hello");
 console.log(result);
