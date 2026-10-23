@@ -16,11 +16,11 @@ $(function () {
 
         if (result.data) {
           $(".member-status").blur();
-        } else alert("User update failed!");
+        } else showError("User update failed!", "Update failed");
       })
       .catch((err) => {
         console.log(err);
-        alert("User update failed!");
+        showError("User update failed!", "Update failed");
       });
   });
 });

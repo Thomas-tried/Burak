@@ -10,7 +10,7 @@ $(function () {
         fileType = uploadFile["type"],
         validImageType = ["image/jpg", "image/jpeg", "image/png"];
       if (!validImageType.includes(fileType)) {
-        alert("please insert only png, jpg, jpeg!");
+        showWarning("Please insert only png, jpg, jpeg!", "Invalid file type");
       } else {
         if (uploadFile) {
           console.log(URL.createObjectURL(uploadFile));
@@ -38,12 +38,12 @@ function validateSignupForm() {
     memberPassword === "" ||
     confirmPassword === ""
   ) {
-    alert("Please insert all required inputs");
+    showWarning("Please insert all required inputs", "Missing information");
     return false;
   }
 
   if (memberPassword !== confirmPassword) {
-    alert("Password differs, please check again!");
+    showError("Password differs, please check again!", "Password mismatch");
     return false;
   }
 
@@ -51,7 +51,7 @@ function validateSignupForm() {
     ? $(".member-image").get(0).files[0].name
     : null;
   if (!memberImage) {
-    alert("Please insert restaurant image!");
+    showWarning("Please insert restaurant image!", "Image required");
     return false;
   }
 }
