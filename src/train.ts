@@ -176,15 +176,28 @@
 
 // Masalani yechimi:
 
-function countChars(word: string): Record<string, number> {
-  const obj: Record<string, number> = {};
-  const letters = word.toLowerCase().split("");
+// function countChars(word: string): Record<string, number> {
+//   const obj: Record<string, number> = {};
+//   const letters = word.toLowerCase().split("");
 
-  for (const everySingleLetter of letters) {
-    obj[everySingleLetter] = (obj[everySingleLetter] || 0) + 1;
-  }
+//   for (const everySingleLetter of letters) {
+//     obj[everySingleLetter] = (obj[everySingleLetter] || 0) + 1;
+//   }
 
-  return obj;
-}
-const result = countChars("hello");
-console.log(result);
+//   return obj;
+// }
+// const result = countChars("hello");
+// console.log(result);
+
+// TASK W
+// Arrayni berilgan uzunlikda bo'laklarga ajratib qaytarsin.
+// Masalan: chunkArray([1, 2, 3, 4, 5], 2) return [[1, 2], [3, 4], [5]]
+
+const chunkArray = (a: any[], size: number) =>
+  Array.from(new Array(Math.ceil(a.length / size)), (_, i) =>
+    a.slice(i * size, i * size + size),
+  );
+
+let a = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"];
+
+console.log(chunkArray(a, 3));
