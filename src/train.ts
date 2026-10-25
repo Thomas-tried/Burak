@@ -193,11 +193,38 @@
 // Arrayni berilgan uzunlikda bo'laklarga ajratib qaytarsin.
 // Masalan: chunkArray([1, 2, 3, 4, 5], 2) return [[1, 2], [3, 4], [5]]
 
-const chunkArray = (a: any[], size: number) =>
-  Array.from(new Array(Math.ceil(a.length / size)), (_, i) =>
-    a.slice(i * size, i * size + size),
-  );
+// Masalani yechimi:
 
-let a = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"];
+// const chunkArray = (a: any[], size: number) =>
+//   Array.from(new Array(Math.ceil(a.length / size)), (_, i) =>
+//     a.slice(i * size, i * size + size),
+//   );
 
-console.log(chunkArray(a, 3));
+// let a = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"];
+
+// console.log(chunkArray(a, 3));
+
+// TASK X
+// Object tarkibida (nested bo'lsa ham) berilgan kalit necha marta takrorlanganini sanang.
+// Masalan: countOccurrences({model: "A", s: {model: "B"}}, "model") return 2
+
+// Masalani yechimi:
+
+function countOccurrences(obj: any, key: string): number {
+  let counter = 0;
+
+  for (const k in obj) {
+    if (k === key) counter++;
+
+    const value = obj[k];
+    if (typeof value === "object" && value !== null) {
+      counter += countOccurrences(value, key);
+    }
+  }
+
+  return counter;
+}
+
+const result = countOccurrences({ model: "A", s: { model: "B" } }, "model");
+const result2 = countOccurrences({ a: 1, b: { a: 2, c: { a: 3 } }, d: 4 }, "a");
+console.log(result2);
