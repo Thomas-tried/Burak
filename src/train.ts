@@ -8,6 +8,8 @@
  | - Error handling
 */
 
+import restaurantController from "./controllers/restaurant.controller";
+
 /** Traditional FD => SSR => EJS */
 /** Modern FD => SPA => React */
 
@@ -210,21 +212,34 @@
 
 // Masalani yechimi:
 
-function countOccurrences(obj: any, key: string): number {
-  let counter = 0;
+// function countOccurrences(obj: any, key: string): number {
+//   let counter = 0;
 
-  for (const k in obj) {
-    if (k === key) counter++;
+//   for (const k in obj) {
+//     if (k === key) counter++;
 
-    const value = obj[k];
-    if (typeof value === "object" && value !== null) {
-      counter += countOccurrences(value, key);
-    }
-  }
+//     const value = obj[k];
+//     if (typeof value === "object" && value !== null) {
+//       counter += countOccurrences(value, key);
+//     }
+//   }
 
-  return counter;
+//   return counter;
+// }
+
+// const result = countOccurrences({ model: "A", s: { model: "B" } }, "model");
+// const result2 = countOccurrences({ a: 1, b: { a: 2, c: { a: 3 } }, d: 4 }, "a");
+// console.log(result2);
+
+// TASK Y
+// Ikkala arrayda ham ishtirok etgan bir xil qiymatlarni qaytarsin.
+// Masalan: findIntersection([1, 2, 3], [3, 2, 0]) return [2, 3]
+
+// Masalani yechimi:
+
+function findIntersection(arr1: number[], arr2: number[]) {
+  return arr1.filter((item) => arr2.includes(item));
 }
 
-const result = countOccurrences({ model: "A", s: { model: "B" } }, "model");
-const result2 = countOccurrences({ a: 1, b: { a: 2, c: { a: 3 } }, d: 4 }, "a");
-console.log(result2);
+const result = findIntersection([1, 2, 3, 4, 5], [3, 5, 7, 1]);
+console.log(result);
