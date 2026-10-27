@@ -8,8 +8,6 @@
  | - Error handling
 */
 
-import restaurantController from "./controllers/restaurant.controller";
-
 /** Traditional FD => SSR => EJS */
 /** Modern FD => SPA => React */
 
