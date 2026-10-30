@@ -235,9 +235,29 @@
 
 // Masalani yechimi:
 
-function findIntersection(arr1: number[], arr2: number[]) {
-  return arr1.filter((item) => arr2.includes(item));
+// function findIntersection(arr1: number[], arr2: number[]) {
+//   return arr1.filter((item) => arr2.includes(item));
+// }
+
+// const result = findIntersection([1, 2, 3, 4, 5], [3, 5, 7, 1]);
+// console.log(result);
+
+// TASK Z
+// Array tarkibidagi juft sonlar yig'indisini hisoblab qaytarsin.
+// Masalan: sumEvens([1, 2, 3]) return 2
+
+// Masalani yechimi:
+
+function sumEvens(arr: number[]) {
+  let sum = 0;
+
+  for (const num of arr) {
+    if (num % 2 === 0) {
+      sum += num;
+    }
+  }
+
+  return sum;
 }
 
-const result = findIntersection([1, 2, 3, 4, 5], [3, 5, 7, 1]);
-console.log(result);
+console.log(sumEvens([2, 4, 6]));
