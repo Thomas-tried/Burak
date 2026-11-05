@@ -19,7 +19,20 @@ class MemberService {
     this.memberModel = MemberModel;
   }
 
-  /** SPA */
+  /********************* SPA *********************/
+  /////////////////////////////////////////////////
+
+  /******************** getRestaurant ************************/
+
+  public async getRestaurant(): Promise<Member> {
+    const result = await this.memberModel
+      .findOne({ memberType: MemberType.RESTAURANT })
+      .lean()
+      .exec();
+    if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+
+    return result;
+  }
 
   /******************** signup ************************/
 
@@ -66,6 +79,8 @@ class MemberService {
     return await this.memberModel.findById(member._id).lean().exec();
   }
 
+  /******************** updateMember ************************/
+
   public async updateMember(
     member: Member,
     input: MemberUpdateInput,
@@ -77,6 +92,8 @@ class MemberService {
     if (!result) throw new Errors(HttpCode.NOT_MODIFIED, Message.UPDATE_FAILED);
     return result;
   }
+
+  /******************** getTopUsers ************************/
 
   public async getTopUsers(): Promise<Member[]> {
     const result = await this.memberModel
@@ -91,7 +108,8 @@ class MemberService {
     return result;
   }
 
-  /** SSR */
+  /********************** SSR ********************/
+  /////////////////////////////////////////////////
 
   public async getMemberDetail(member: Member): Promise<Member> {
     const memberId = shapeIntoMongooseObjectId(member._id);

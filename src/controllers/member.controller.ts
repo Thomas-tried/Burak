@@ -17,6 +17,23 @@ const authService = new AuthService();
 
 const memberController: T = {};
 
+/******************** getRestaurant ************************/
+
+memberController.getRestaurant = async (req: Request, res: Response) => {
+  try {
+    console.log("getRestaurant");
+    const result = await memberService.getRestaurant();
+
+    res.status(HttpCode.OK).json(result);
+  } catch (err) {
+    console.log("Error, getRestaurant:", err);
+    if (err instanceof Errors) res.status(err.code).json(err);
+    else res.status(Errors.standard.code).json(Errors.standard);
+  }
+};
+
+/******************** signup ************************/
+
 memberController.signup = async (req: Request, res: Response) => {
   try {
     console.log("signup");
@@ -38,6 +55,8 @@ memberController.signup = async (req: Request, res: Response) => {
   }
 };
 
+/******************** login ************************/
+
 memberController.login = async (req: Request, res: Response) => {
   try {
     console.log("login");
@@ -58,6 +77,8 @@ memberController.login = async (req: Request, res: Response) => {
   }
 };
 
+/******************** logout ************************/
+
 memberController.logout = (req: ExtendedRequest, res: Response) => {
   try {
     console.log("logout");
@@ -69,6 +90,8 @@ memberController.logout = (req: ExtendedRequest, res: Response) => {
     else res.status(Errors.standard.code).json(Errors.standard);
   }
 };
+
+/******************** getMemberDetail ************************/
 
 memberController.getMemberDetail = async (
   req: ExtendedRequest,
@@ -86,6 +109,8 @@ memberController.getMemberDetail = async (
   }
 };
 
+/******************** updateMember ************************/
+
 memberController.updateMember = async (req: ExtendedRequest, res: Response) => {
   try {
     console.log("updateMember");
@@ -100,6 +125,8 @@ memberController.updateMember = async (req: ExtendedRequest, res: Response) => {
   }
 };
 
+/******************** getTopUsers ************************/
+
 memberController.getTopUsers = async (req: Request, res: Response) => {
   try {
     console.log("getTopUsers");
@@ -112,6 +139,8 @@ memberController.getTopUsers = async (req: Request, res: Response) => {
     else res.status(Errors.standard.code).json(Errors.standard);
   }
 };
+
+/******************** verifyAuth ************************/
 
 memberController.verifyAuth = async (
   req: ExtendedRequest,
@@ -131,6 +160,8 @@ memberController.verifyAuth = async (
     else res.status(Errors.standard.code).json(Errors.standard);
   }
 };
+
+/******************** retrieveAuth ************************/
 
 memberController.retrieveAuth = async (
   req: ExtendedRequest,
