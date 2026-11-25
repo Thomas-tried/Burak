@@ -1,49 +1,79 @@
 @import url("/css/preloader.css");
 
+/* ---------- Page background (slowly drifting ember gradient) ---------- */
 .home-container {
   position: relative;
-  width: auto;
+  width: 100%;
   height: auto;
-  min-height: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: linear-gradient(-45deg, #110303f0, #dd6d04, #011c1afc, #7a6868);
+  overflow-x: hidden;
+  padding-bottom: 40px;
+  background:
+    radial-gradient(circle at 50% 58%, rgba(255, 176, 46, 0.55), transparent 48%),
+    linear-gradient(-45deg, #1f0e07, #9a3a0a, #2c160b, #d4650f);
+  background-size: 100% 100%, 300% 300%;
+  animation: homeGradient 20s ease infinite;
 }
 
 .home-container a {
   text-decoration: none;
-  color: #000000;
 }
 
-.home-container .nav-item a {
-  color: #e3c08d;
-}
-
-.home-container .nav-item a.disabled {
-  color: #898071;
-}
-
+/* ---------- Navigation ---------- */
 .home-container .navigation-menu {
   position: relative;
   z-index: 10000;
-  color: #efefee;
-  font-size: 40px;
-  font-family: monospace;
+  margin-top: 28px;
 }
 
+/* ---------- Hero caption (above the sphere) ---------- */
+.home-container .hero-caption {
+  position: relative;
+  z-index: 5;
+  margin-top: 38px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.home-container .hero-eyebrow {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--amber-soft);
+}
+
+.home-container .hero-title {
+  margin: 6px 0 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(54px, 8vw, 96px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  text-shadow: 0 6px 40px rgba(0, 0, 0, 0.55);
+}
+
+/* ---------- Sphere animation (same sizes the script expects) ---------- */
 .home-container .animation-frame {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 55px;
+  margin-top: -10px;
+  width: 100%;
 }
 
 .home-container .animation-wrapper {
   position: relative;
-  width: 775px;
-  height: 775px;
+  width: min(700px, 94vw);
+  aspect-ratio: 1 / 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -53,6 +83,7 @@
   position: relative;
   width: 580px;
   height: 580px;
+  filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.45));
 }
 
 .home-container .sphere path {
@@ -65,5 +96,24 @@
 @media (min-width: 500px) {
   .sphere path {
     stroke-width: 0.4px;
+  }
+}
+
+@media (max-width: 600px) {
+  .navigation-menu .nav-link {
+    padding: 8px 14px;
+    font-size: 11px;
+  }
+}
+
+@keyframes homeGradient {
+  0% {
+    background-position: 0% 0%, 0% 50%;
+  }
+  50% {
+    background-position: 0% 0%, 100% 50%;
+  }
+  100% {
+    background-position: 0% 0%, 0% 50%;
   }
 }

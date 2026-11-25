@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #17181d;
+  background: radial-gradient(circle at 50% 45%, #3a1d0e 0%, #150c08 70%);
   transition:
     opacity 0.4s ease,
     visibility 0.4s ease;
@@ -16,7 +16,7 @@
   --fg: hsl(var(--hue), 10%, 10%);
   --trans-dur: 0.3s;
   font-size: calc(14px + (30 - 14) * (100vw - 280px) / (3840 - 280));
-  color: var(--fg);
+  color: #f3e4d2;
 }
 
 .pl {

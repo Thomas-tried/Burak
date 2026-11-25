@@ -1,9 +1,318 @@
 @import url("/css/preloader.css");
 
+/* ============================================================
+   DESIGN TOKENS (shared by every page)
+   ============================================================ */
+:root {
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --bg-0: #150c08;
+  --bg-1: #221510;
+  --ink: #fff4e8;
+  --muted: #cdbba6;
+  --amber: #ffb02e;
+  --amber-soft: #ffdca3;
+  --ember: #f0643a;
+  --card: rgba(44, 29, 21, 0.72);
+  --card-solid: #2a1b13;
+  --field: rgba(255, 255, 255, 0.09);
+  --line: rgba(255, 220, 175, 0.22);
+  --radius-lg: 22px;
+  --radius-md: 14px;
+  --shadow-lg: 0 30px 80px -20px rgba(0, 0, 0, 0.7);
+  --shadow-glow: 0 10px 30px -8px rgba(255, 176, 46, 0.55);
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
   height: 100%;
   width: 100%;
+}
+
+body {
+  background: var(--bg-0);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  color-scheme: dark;
+}
+
+::selection {
+  background: var(--amber);
+  color: #1a0f08;
+}
+
+/* ============================================================
+   NAVIGATION (floating glass pill)
+   ============================================================ */
+.navigation-menu .nav {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  gap: 4px;
+  padding: 6px;
+  background: rgba(20, 12, 8, 0.55);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 12px 40px -12px rgba(0, 0, 0, 0.6);
+}
+
+.navigation-menu .nav-link {
+  padding: 9px 22px;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.navigation-menu .nav-link:hover {
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.08);
+  text-decoration: none;
+}
+
+.navigation-menu .nav-link.active {
+  color: #1d1108;
+  background: linear-gradient(135deg, var(--amber-soft), var(--amber));
+  box-shadow: var(--shadow-glow);
+}
+
+.navigation-menu .nav-link.logout-link:hover {
+  color: #fff;
+  background: rgba(228, 87, 46, 0.85);
+}
+
+/* ============================================================
+   BUTTONS (override Bootstrap)
+   ============================================================ */
+.btn {
+  font-family: var(--font-body);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  border-radius: 12px;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    filter 0.2s ease;
+}
+
+.btn:focus {
+  box-shadow: 0 0 0 3px rgba(245, 165, 36, 0.35);
+}
+
+.btn-primary {
+  color: #1d1108;
+  border: none;
+  background: linear-gradient(135deg, var(--amber-soft), var(--amber));
+  box-shadow: var(--shadow-glow);
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+  color: #1d1108 !important;
+  background: linear-gradient(135deg, #ffe0ad, #ffb43d) !important;
+  transform: translateY(-2px);
+}
+
+.btn-danger {
+  color: #ff9a7c;
+  background: transparent;
+  border: 1px solid rgba(228, 87, 46, 0.55);
+}
+
+.btn-danger:hover,
+.btn-danger:focus,
+.btn-danger:active {
+  color: #fff !important;
+  background: var(--ember) !important;
+  border-color: var(--ember) !important;
+  transform: translateY(-2px);
+}
+
+/* ============================================================
+   SWEETALERT2 ALERTS (error / warning / success / logout confirm)
+   ============================================================ */
+html body .swal2-container.swal2-backdrop-show {
+  background: rgba(14, 7, 4, 0.62);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+.swal2-container .swal2-popup {
+  position: relative;
+  width: 27em;
+  max-width: 92vw;
+  padding: 2.4em 2em 1.9em;
+  overflow: hidden;
+  background: var(--card-solid);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 26px;
+  font-family: var(--font-body);
+  box-shadow:
+    0 40px 90px -20px rgba(0, 0, 0, 0.75),
+    0 0 60px -10px rgba(255, 176, 46, 0.25);
+}
+
+/* glowing accent line on top of every alert */
+.swal2-container .swal2-popup::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 12%;
+  right: 12%;
+  height: 3px;
+  border-radius: 0 0 6px 6px;
+  background: linear-gradient(90deg, transparent, var(--amber), transparent);
+}
+
+.swal2-container .swal2-popup.swal2-show {
+  animation: burakAlertIn 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.25);
+}
+
+.swal2-container .swal2-popup.swal2-hide {
+  animation: burakAlertOut 0.2s ease forwards;
+}
+
+.swal2-container .swal2-title {
+  padding: 0.4em 0 0;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 1.85em;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.swal2-container .swal2-html-container {
+  margin: 0.7em 0 0;
+  padding: 0 0.4em;
+  color: var(--muted);
+  font-size: 1.02em;
+  line-height: 1.6;
+}
+
+.swal2-container .swal2-actions {
+  margin-top: 1.8em;
+  gap: 10px;
+}
+
+.swal2-container .swal2-styled {
+  margin: 0;
+  padding: 0.8em 1.8em;
+  border-radius: 14px;
+  font-family: var(--font-body);
+  font-size: 0.95em;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  transition:
+    transform 0.2s ease,
+    filter 0.2s ease;
+}
+
+.swal2-container .swal2-styled:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
+.swal2-container .swal2-styled:focus {
+  box-shadow: 0 0 0 4px rgba(255, 176, 46, 0.3);
+}
+
+.swal2-container .swal2-styled.swal2-confirm {
+  color: #231207;
+  background: linear-gradient(135deg, var(--amber-soft), var(--amber));
+  box-shadow: var(--shadow-glow);
+}
+
+.swal2-container .swal2-styled.swal2-cancel {
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid var(--line);
+}
+
+.swal2-container .swal2-timer-progress-bar {
+  background: linear-gradient(90deg, var(--amber-soft), var(--amber));
+}
+
+/* icons: recoloured to fit the theme */
+.swal2-container .swal2-icon {
+  margin: 0.2em auto 0.6em;
+}
+
+.swal2-container .swal2-icon.swal2-error {
+  color: #ff7a59;
+  border-color: #ff7a59;
+}
+
+.swal2-container .swal2-icon.swal2-error [class^="swal2-x-mark-line"] {
+  background-color: #ff7a59;
+}
+
+.swal2-container .swal2-icon.swal2-warning {
+  color: var(--amber);
+  border-color: var(--amber);
+}
+
+.swal2-container .swal2-icon.swal2-question {
+  color: var(--amber-soft);
+  border-color: var(--amber-soft);
+}
+
+.swal2-container .swal2-icon.swal2-info {
+  color: #7cc4ff;
+  border-color: #7cc4ff;
+}
+
+.swal2-container .swal2-icon.swal2-success {
+  color: #4ade80;
+  border-color: #4ade80;
+}
+
+.swal2-container .swal2-icon.swal2-success [class^="swal2-success-line"] {
+  background-color: #4ade80;
+}
+
+.swal2-container .swal2-icon.swal2-success .swal2-success-ring {
+  border-color: rgba(74, 222, 128, 0.3);
+}
+
+/* the success tick uses patches that must match the popup colour */
+.swal2-container .swal2-icon.swal2-success [class^="swal2-success-circular-line"],
+.swal2-container .swal2-icon.swal2-success .swal2-success-fix {
+  background: var(--card-solid);
+}
+
+@keyframes burakAlertIn {
+  0% {
+    opacity: 0;
+    transform: translateY(24px) scale(0.88);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes burakAlertOut {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.92);
+  }
 }

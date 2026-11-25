@@ -1,45 +1,38 @@
 @import url("/css/preloader.css");
 
+/* ---------- Page ---------- */
 .users-container {
   position: relative;
-  width: auto;
-  height: auto;
-  min-width: 100%;
-  min-height: 100%;
+  width: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: linear-gradient(-45deg, #110303bf, #e37813, #011c1aba, #968383);
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(255, 176, 46, 0.32), transparent 38%),
+    radial-gradient(circle at 90% 90%, rgba(240, 100, 58, 0.3), transparent 40%),
+    linear-gradient(-45deg, #1f0e07, #66290b, #261409, #8f3e0d);
+  background-attachment: fixed;
 }
 
 .users-container a {
   text-decoration: none;
-  color: #000000;
-}
-
-.users-container .nav-item a {
-  color: #e3c08d;
-}
-
-.users-container .nav-item a.disabled {
-  color: #898071;
 }
 
 .users-container .navigation-menu {
   position: absolute;
   z-index: 10000;
-  top: 1%;
-  color: #efefee;
-  font-size: 40px;
-  font-family: monospace;
+  top: 28px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .users-container .users-frame {
   position: relative;
-  padding-bottom: 80px;
+  padding: 0 16px 90px;
   width: 100%;
   height: auto;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -47,66 +40,166 @@
 
 .users-container .users-frame .board {
   position: relative;
-  margin-top: 100px;
-  width: 1320px;
+  margin-top: 120px;
+  width: min(1320px, 100%);
   height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.users-container .board .dishes-table {
-  position: relative;
-  width: 100%;
-  height: auto;
-  margin-top: 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+/* "Please login first!" message */
+.users-container .users-frame .board[style] {
+  margin-top: 28vh;
+  font-family: var(--font-display);
+  font-weight: 600;
+  text-align: center;
+  color: var(--ink);
 }
 
 .users-container .board .user-table {
   position: relative;
-  width: 85%;
+  width: min(1000px, 100%);
   height: auto;
-  margin-top: 30px;
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+/* ---------- Title ---------- */
 .users-container .header-name {
-  font-family: "Source Serif Pro";
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--font-display);
   font-style: normal;
-  font-weight: 400;
-  font-size: 30px;
-  line-height: 25px;
-  color: #ffffff;
+  font-weight: 600;
+  font-size: 38px;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--ink);
 }
 
-.users-container select:focus {
-  min-width: 90%;
-  width: auto;
+.users-container .header-name::after {
+  content: "";
+  margin-top: 14px;
+  width: 56px;
+  height: 3px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--amber-soft), var(--amber));
 }
 
-.users-container .spec-select {
-  position: relative;
-  padding: 0px 7px;
-  /*width: 100%;*/
-  height: 27px;
-  background: #ffffff;
-  border: 1px solid #dddddd;
-  border-radius: 8px;
-  font-family: "GT Walsheim Pro";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 26px;
-  color: #4f547b;
+/* ---------- Table ---------- */
+.users-container .table {
+  margin-bottom: 0;
+  width: 100%;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+  box-shadow: var(--shadow-lg);
 }
 
-.users-container table td,
-table th {
+.users-container .table thead th {
+  padding: 18px 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border: none;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--amber-soft);
+}
+
+.users-container .table tbody {
+  background: transparent !important; /* overrides the inline white */
+}
+
+.users-container .table td,
+.users-container .table th {
   text-align: center;
   vertical-align: middle;
+}
+
+.users-container .table tbody td {
+  padding: 16px 12px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 214, 170, 0.08);
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--ink);
+  transition: background 0.2s ease;
+}
+
+.users-container .table tbody tr:hover td {
+  background: rgba(245, 165, 36, 0.09);
+}
+
+.users-container .table tbody:last-of-type td {
+  border-bottom: none;
+}
+
+.users-container .table tbody td:first-child {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.users-container .table tbody td:nth-child(2) {
+  font-weight: 700;
+}
+
+/* status dropdown in the table */
+.users-container .spec-select {
+  position: relative;
+  padding: 0 30px 0 14px;
+  height: 34px;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.08);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%23ffd18a' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 11px center;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.users-container .spec-select:hover,
+.users-container .spec-select:focus {
+  border-color: var(--amber);
+  box-shadow: 0 0 0 3px rgba(245, 165, 36, 0.18);
+}
+
+.users-container select option {
+  background: var(--card-solid);
+  color: var(--ink);
+}
+
+@media (max-width: 700px) {
+  .users-container .user-table {
+    overflow-x: auto;
+  }
+
+  .users-container .table {
+    min-width: 520px;
+  }
 }
